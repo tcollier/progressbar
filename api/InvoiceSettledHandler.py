@@ -1,21 +1,10 @@
 from flask_restful import Api, Resource, reqparse
 
-from clients.BtcPayServerClient import BtcPayServerClient
-
-
 class InvoiceSettledHandler(Resource):
-    # Authorization: Basic
-    # dmJPVmswRUVsT2xXaW9DTHZMUW5XMFpPclV2MEUwMFF5UlUwMTA3REJvcg ==
-    #
-    # vbOVk0EElOlWioCLvLQnW0ZOrUv0E00QyRU0107DBor
     def get(self):
-        client = BtcPayServerClient()
-        store_id = 'LfUdzH3JMZjcr3mb576bqM9YmQPgwmj1fSTLP7mTXZ7'
-        order_id = 1;
-        client.create_invoice(store_id, order_id)
         return {
             'resultStatus': 'SUCCESS',
-            'message': "Create Invoice Handler"
+            'message': "Invoice settled handler"
         }
 
     def post(self):
