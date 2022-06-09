@@ -2,8 +2,9 @@ import React from 'react';
 import {
   Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box,
 } from '@chakra-ui/react'
+import { Cocktail } from './types'
 
-function CocktailHeader({ cocktail }) {
+function CocktailHeader({ cocktail }: { cocktail: Cocktail }) {
   return (
       <h2>
         <AccordionButton>
@@ -15,14 +16,14 @@ function CocktailHeader({ cocktail }) {
   );
 }
 
-function CocktailBody({ cocktail }) {
+function CocktailBody({ cocktail }: { cocktail: Cocktail }) {
   return (
       <AccordionPanel pb={4}>
         {cocktail.price} sats
       </AccordionPanel>
   );
 }
-function CocktailList({ cocktails }) {
+function CocktailList({ cocktails }: { cocktails: Cocktail[] }) {
   return (
       <Accordion allowToggle>
         {cocktails.map(function(cocktail) {
