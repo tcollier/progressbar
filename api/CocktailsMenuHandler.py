@@ -6,4 +6,11 @@ import json
 class CocktailsMenuHandler(Resource):
     def get(self):
         client = SquareupClient()
-        return client.list_catalog_items()
+
+        menuItems = client.getMenu()
+        return {
+            'resultStatus': 'SUCCESS',
+            'message': "Fetched the menu",
+            "menuItems": [item.toJSON() for item in menuItems]
+        }
+
