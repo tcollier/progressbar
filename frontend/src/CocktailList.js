@@ -24,7 +24,7 @@ function CocktailBody({ cocktail }) {
 }
 function CocktailList({ cocktails }) {
   return (
-      <Accordion>
+      <Accordion allowToggle>
         {cocktails.map(function(cocktail) {
           return (
               <AccordionItem>
