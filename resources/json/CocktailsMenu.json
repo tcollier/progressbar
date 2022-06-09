@@ -95,6 +95,51 @@
         },
         "key": "ecom_target_classic_site_id"
       }
+    },
+    {
+      "type": "ITEM",
+      "id": "BZXVK3XTVMNR6P6UDAZIA5NV",
+      "updated_at": "2022-06-09T17:44:59.467Z",
+      "created_at": "2022-06-09T16:38:47.681Z",
+      "version": 1654796699467,
+      "is_deleted": false,
+      "present_at_all_locations": true,
+      "item_data": {
+        "name": "jack and coke",
+        "visibility": "PRIVATE",
+        "variations": [
+          {
+            "type": "ITEM_VARIATION",
+            "id": "LURPWR46CO6F32JR2SMRYE5F",
+            "updated_at": "2022-06-09T16:41:28.084Z",
+            "created_at": "2022-06-09T16:38:47.681Z",
+            "version": 1654792888084,
+            "is_deleted": false,
+            "present_at_all_locations": true,
+            "item_variation_data": {
+              "item_id": "BZXVK3XTVMNR6P6UDAZIA5NV",
+              "name": "Regular",
+              "ordinal": 1,
+              "pricing_type": "FIXED_PRICING",
+              "price_money": {
+                "amount": 250,
+                "currency": "USD"
+              },
+              "track_inventory": false,
+              "inventory_alert_type": "NONE",
+              "sellable": true,
+              "stockable": true
+            }
+          }
+        ],
+        "product_type": "REGULAR",
+        "skip_modifier_screen": true,
+        "ecom_available": true,
+        "ecom_visibility": "VISIBLE",
+        "image_ids": [
+          "QUUSABNQ2TCDJRWWEPMYZSY3"
+        ]
+      }
     }
   ]
 }
