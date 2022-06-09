@@ -4,7 +4,7 @@ class InvoiceSettledHandler(Resource):
     def get(self):
         return {
             'resultStatus': 'SUCCESS',
-            'message': "Invoice settled handler"
+            'message': "Invoice settled!"
         }
 
     def post(self):
@@ -13,12 +13,8 @@ class InvoiceSettledHandler(Resource):
         args = parser.parse_args()
 
         print(args)
-        # note, the post req from frontend needs to match the strings here (e.g. 'type and 'message')
-        # secret='nsEBcV7iNn1mNyzJnp3ThZDJQts'
-        store_id = args['storeId']
-        invoice_id = args['invoiceId']
         return {
             'resultStatus': 'SUCCESS',
-            'message': "Invoice Settled Handler: " + store_id + " | " + invoice_id
+            'message': "Invoice Settled Handler: "
         }
 

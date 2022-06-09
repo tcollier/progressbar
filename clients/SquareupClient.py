@@ -39,6 +39,7 @@ class SquareupClient:
         result = self.client.catalog.list_catalog()
 
         if result.is_success():
+
             return [MenuItem(rawObj) for rawObj in result.body['objects'] if rawObj['type'] == 'ITEM']
 
         elif result.is_error():
@@ -115,3 +116,4 @@ class SquareupClient:
         orderId = self._createOrder(itemVariation.id)
         paymentId = self._createPayment(itemVariation.price, orderId)
         return paymentId
+
