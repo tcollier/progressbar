@@ -1,10 +1,12 @@
 from flask_restful import Api, Resource, reqparse
+from flask import request
 
 class InvoiceSettledHandler(Resource):
     def get(self):
+        item_id = request.args.get('itemId')
         return {
             'resultStatus': 'SUCCESS',
-            'message': "Invoice settled!"
+            'message': "Invoice settled for " + item_id
         }
 
     def post(self):
