@@ -4,7 +4,7 @@ import axios from "axios";
 
 function toCocktails(response: any): Cocktail[] {
   const cocktails: Cocktail[] = []
-  response.data.objects.forEach(function(object: any) {
+  response.data.forEach(function(object: any) {
     if (object.type === 'ITEM') {
       const itemData = object.item_data
       cocktails.push(

@@ -29,20 +29,6 @@ class SquareupClient:
         result = self.client.catalog.list_catalog()
 
         if result.is_success():
-            for object in result.body['objects']:
-                if object['type'] == 'ITEM':
-                    print(f"{object['item_data']['name']}")
-                    print(f"{object['item_data']['variations'][0]['item_variation_data']['price_money']}")
-
+            return result.body['objects']
         elif result.is_error():
-            for error in result.errors:
-                print(error['category'])
-                print(error['code'])
-                print(error['detail'])
-
-
-
-
-
-
-
+            return result.errors
