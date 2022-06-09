@@ -3,6 +3,7 @@ from flask_restful import Api, Resource, reqparse
 from flask_cors import CORS  # comment this on deployment
 from api.HelloApiHandler import HelloApiHandler
 from api.InvoiceSettledHandler import InvoiceSettledHandler
+from api.CocktailsMenuHandler import CocktailsMenuHandler
 
 app = Flask(__name__, static_url_path='', static_folder='frontend/build')
 CORS(app)  # comment this on deployment
@@ -16,3 +17,5 @@ def serve(path):
 
 api.add_resource(HelloApiHandler, '/flask/hello')
 api.add_resource(InvoiceSettledHandler, '/btcPay/invoiceSettled')
+api.add_resource(CocktailsMenuHandler, '/cocktails')
+
