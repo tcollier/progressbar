@@ -27,8 +27,10 @@ function useCocktailMenuFetcher() {
 
   useEffect(()=> {
     axios.get('/cocktails').then(response => {
+      console.log(response)
       setCocktails(toCocktails(response))
     }).catch(error => {
+      console.log(error)
       setError(error)
     }).finally(() =>
       setLoading(false)
