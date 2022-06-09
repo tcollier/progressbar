@@ -35,7 +35,7 @@ function useCocktailMenuFetcher() {
     }).finally(() =>
       setLoading(false)
     )
-  })
+  }, [])
   return { cocktails, loading, error }
 }
 
