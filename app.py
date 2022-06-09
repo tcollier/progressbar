@@ -1,9 +1,10 @@
 from flask import Flask, send_from_directory
-from flask_restful import Api, Resource, reqparse
+from flask_restful import Api
 from flask_cors import CORS  # comment this on deployment
 from api.HelloApiHandler import HelloApiHandler
 from api.InvoiceSettledHandler import InvoiceSettledHandler
 from api.CocktailsMenuHandler import CocktailsMenuHandler
+from api.CreateInvoiceHandler import CreateInvoiceHandler
 
 app = Flask(__name__, static_url_path='', static_folder='frontend/build')
 CORS(app)  # comment this on deployment
@@ -18,4 +19,5 @@ def serve(path):
 api.add_resource(HelloApiHandler, '/flask/hello')
 api.add_resource(InvoiceSettledHandler, '/btcPay/invoiceSettled')
 api.add_resource(CocktailsMenuHandler, '/cocktails')
+api.add_resource(CreateInvoiceHandler, '/btcPay/createInvoice')
 
