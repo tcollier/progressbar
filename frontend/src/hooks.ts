@@ -12,7 +12,7 @@ function useCocktailMenuFetcher() {
       console.log(response)
       setCocktails(response.data.menuItems as Cocktail[])
     }).catch(error => {
-      console.log(error)
+      console.warn(error)
       setError(error)
     }).finally(() =>
       setLoading(false)
