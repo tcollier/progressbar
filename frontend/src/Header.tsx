@@ -1,5 +1,13 @@
 import React from "react"
-import {Box, Flex, Button, Heading, useColorMode, useColorModeValue} from "@chakra-ui/react"
+import {
+  Box,
+  Flex,
+  Button,
+  Heading,
+  useColorMode,
+  useColorModeValue,
+  Container
+} from "@chakra-ui/react"
 import {MoonIcon} from "@chakra-ui/icons";
 
 
@@ -10,26 +18,26 @@ const Header = () => {
   return (
     <Flex
       as="nav"
-      align="center"
-      justify="space-between"
       wrap="wrap"
       padding={6}
       bg='orange.400'
       color={color}
+      marginBottom={16}
     >
-      <Flex align="center" mr={5}>
-        <Heading as="h1" size="lg" letterSpacing={"tighter"}>
-          Progress ₿ar
-        </Heading>
-      </Flex>
-
-      <Box
-        mt={{ base: 4, md: 0 }}
-      >
-        <Button onClick={toggleColorMode}>
-            <MoonIcon />
-          </Button>
-      </Box>
+      <Container maxW='container.xl'>
+        <Flex justify="space-between">
+          <Flex align="center" mr={4}>
+            <Heading as="h1" size="lg" letterSpacing={"tighter"}>
+              Progress ₿ar
+            </Heading>
+          </Flex>
+          <Box mt={{ base: 4, md: 0 }}>
+            <Button onClick={toggleColorMode}>
+              <MoonIcon />
+            </Button>
+          </Box>
+        </Flex>
+      </Container>
     </Flex>
   );
 };
