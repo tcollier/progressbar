@@ -12,15 +12,10 @@ class InvoiceSettledHandler(Resource):
         }
 
     def post(self):
-        print(self)
-        parser = reqparse.RequestParser()
-        args = parser.parse_args()
-
-        itemId = request.args.get('itemId')
+        itemId = request.json['itemId']
         sqClient = SquareupClient()
-        receiptId = sqClient.createOrder(itemId)
+        receiptId = sqClient.createOrder(sqClient.getItem(itemId))
 
-        print(args)
         return {
             'resultStatus': 'SUCCESS',
             'message': "Invoice Settled Handler",
