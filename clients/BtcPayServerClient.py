@@ -8,9 +8,8 @@ class BtcPayServerClient:
         self.client = pickle.load(f)
         self.server_url = "https://btcpp-progress-bar.herokuapp.com"
 
-    def create_invoice(self):
-        item_id = "ALOHUSTMEA3HAKO72MLSWX3I"
-        invoice = self.client.create_invoice({"price": 20, "currency": "SATS",
+    def create_invoice(self, item_id, item_price):
+        invoice = self.client.create_invoice({"price": item_price, "currency": "SATS",
                                     "notificationURL": self.server_url + "/btcPay/invoiceSettled?itemId=" + item_id,
                                     "redirectURL": self.server_url + "/btcPay/invoiceCreated",
                                     "closeURL": self.server_url + "/btcPay/invoiceClosed",

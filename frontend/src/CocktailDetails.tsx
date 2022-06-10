@@ -24,9 +24,9 @@ function CocktailDetails({ cocktail }: { cocktail: Cocktail }) {
   const [loading, setLoading] = useState<boolean>(false)
   const [_invoice, setInvoice] = useState<string>('')
 
-  function createInvoice() {
+  function createInvoice(id: string, price: number) {
     setLoading(true)
-    axios.get('/btcPay/createInvoice').then(response => {
+    axios.get(`/btcPay/createInvoice?itemId=${id}&itemPrice=${price}`).then(response => {
       setInvoice(response.data)
     }).catch(error => {
       console.warn(error)
@@ -124,7 +124,7 @@ function CocktailDetails({ cocktail }: { cocktail: Cocktail }) {
             bg='orange.400'
             color={useColorModeValue('gray.100', 'gray.800')}
             textTransform='uppercase'
-            disabled={loading} onClick={createInvoice}
+            disabled={loading} onClick={() => createInvoice(cocktail.id, cocktail.price)}
             _hover={{
               transform: 'translateY(2px)',
               boxShadow: 'lg',
