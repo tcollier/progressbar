@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react'
 import React from 'react'
 
-function ModalComponent({openModal, invoiceUrl} : { openModal: boolean, invoiceUrl: string}) {
+function ModalComponent({invoiceUrl} : { invoiceUrl: string}) {
     const { isOpen, onClose } = useDisclosure()
     // @ts-ignore
     return (
