@@ -12,6 +12,7 @@ class InvoiceSettledHandler(Resource):
         }
 
     def post(self):
+        println("smtest invoiceSettled Body", request.json)
         itemId = request.json['itemId']
         sqClient = SquareupClient()
         receiptId = sqClient.createOrder(sqClient.getItem(itemId))
