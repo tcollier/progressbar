@@ -89,7 +89,7 @@ class SquareupClient:
                                     "display_name": "Anon Y. Mouse"
                                 },
                                 "expires_at": tomorrowStr(),
-                                "pickup_at": tomorrowStr(),
+                                "pickup_at": todayStr(),
                                 "is_curbside_pickup": False
                             }
                         }
@@ -131,8 +131,8 @@ class SquareupClient:
             # return the order id
             return dotsi.Dict(result.body).payment.id
 
-    def createOrder(self, itemVariation) -> str:
-        orderId = self._createOrder(itemVariation.id)
-        paymentId = self._createPayment(itemVariation.price, orderId)
+    def createOrder(self, item) -> str:
+        orderId = self._createOrder(item.variation_id)
+        paymentId = self._createPayment(item.price, orderId)
         return paymentId
 

@@ -8,4 +8,4 @@ def todayStr() -> str:
   return str(date.today())
 
 def tomorrowStr() -> str:
-  return str(date.today() + timedelta(days=1))
+  return str(date.today() + timedelta(days=2))
