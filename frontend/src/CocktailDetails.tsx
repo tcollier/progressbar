@@ -103,8 +103,8 @@ function CocktailDetails({ cocktail }: { cocktail: Cocktail }) {
             mt={8}
             size={'lg'}
             py={'7'}
-            bg={useColorModeValue('gray.900', 'gray.50')}
-            color={useColorModeValue('white', 'gray.900')}
+            bg='orange.400'
+            color={useColorModeValue('gray.100', 'gray.800')}
             textTransform={'uppercase'}
             _hover={{
               transform: 'translateY(2px)',
