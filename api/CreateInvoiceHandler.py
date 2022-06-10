@@ -7,7 +7,7 @@ from clients.BtcPayServerClient import BtcPayServerClient
 class CreateInvoiceHandler(Resource):
     def get(self):
         invoice_url = BtcPayServerClient().create_invoice()
-        return redirect(invoice_url)
+        return invoice_url
 
     def post(self):
         print(self)

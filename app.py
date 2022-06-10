@@ -9,7 +9,7 @@ from api.InvoiceCreatedHandler import InvoiceCreatedHandler
 from api.InvoiceSettledHandler import InvoiceSettledHandler
 
 app = Flask(__name__, static_url_path='', static_folder='frontend/build')
-CORS(app)  # comment this on deployment
+#CORS(app)  # comment this on deployment
 api = Api(app)
 
 
