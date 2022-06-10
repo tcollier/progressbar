@@ -9,24 +9,28 @@ LOCATION_ID = "LCRMPRZ047M9A"
 CLIENT_ACCESS_TOKEN = "EAAAFFmvScsBx09oQgGC8O7utMsQF1FUvVfLx-RexkCV1wGbJMajAED1oPyJ-Gk2"
 
 class MenuItem:
-    def __init__(self, rawObj):
+    def __init__(self, client, rawObj):
+        self.client = client
         obj = dotsi.Dict(rawObj)
-        self.name = obj.item_data.name
 
-        variation = obj.item_data.variations[0]
+        item_data = obj.item_data
+        self.name = item_data.name
+        self.image_ids = item_data.image_ids
 
+        variation = item_data.variations[0]
         self.id = variation.id
         self.price = variation.item_variation_data.price_money.amount
+
+    def imageURL(self):
+        return self.client.getImageURL(self.image_ids[0])
 
     def toJSON(self):
         return {
             "id": self.id,
             "name": self.name,
             "price": self.price,
+            "imageURL": self.imageURL()
         }
-
-
-
 
 class SquareupClient:
     def __init__(self):
@@ -40,13 +44,18 @@ class SquareupClient:
 
         if result.is_success():
 
-            return [MenuItem(rawObj) for rawObj in result.body['objects'] if rawObj['type'] == 'ITEM']
+            return [MenuItem(self, rawObj) for rawObj in result.body['objects'] if rawObj['type'] == 'ITEM']
 
         elif result.is_error():
             for error in result.errors:
                 print(error['category'])
                 print(error['code'])
                 print(error['detail'])
+
+    def getImageURL(self, imageId: str) -> str: 
+        result = self.client.catalog.retrieve_catalog_object(object_id=imageId)
+        obj = dotsi.Dict(result.body)
+        return obj.object.image_data.url
 
     def _createOrder(self, itemVariationId) -> str:
         idempotencyKey = uuidStr()
