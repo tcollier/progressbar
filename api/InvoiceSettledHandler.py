@@ -12,7 +12,11 @@ class InvoiceSettledHandler(Resource):
         }
 
     def post(self):
-        itemId = request.args.get('itemId')
+
+        print("SM DEBUG TEST", request.json)
+        #itemId = request.args.get('itemId')
+        # Repurposing 'order id' param for 'item id'
+        itemId = request.json['orderId']
         sqClient = SquareupClient()
         receiptId = sqClient.createOrder(sqClient.getItem(itemId))
 
