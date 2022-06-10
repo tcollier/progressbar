@@ -1,17 +1,18 @@
 import React from 'react';
 import CocktailList from './CocktailList'
 import { useCocktailMenuFetcher } from "./hooks";
-import {Spinner, useColorMode} from "@chakra-ui/react";
+import {Container, Spinner, VStack} from "@chakra-ui/react";
 
 function App() {
   const { cocktails, loading } = useCocktailMenuFetcher()
-  const { toggleColorMode } = useColorMode()
 
   return (
-      <div className="App">
-        { loading &&  <Spinner /> }
+      <Container maxW='container.xl' justifyContent='center'>
+        {loading &&  <VStack>
+          <Spinner />
+        </VStack>}
         {cocktails && <CocktailList cocktails={cocktails} />}
-      </div>
+      </Container>
   );
 }
 
