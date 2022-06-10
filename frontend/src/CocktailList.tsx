@@ -3,6 +3,7 @@ import {
   Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, Button
 } from '@chakra-ui/react'
 import { Cocktail } from './types'
+import CocktailDetails from "./CocktailDetails";
 
 function CocktailHeader({ cocktail }: { cocktail: Cocktail }) {
   return (
@@ -29,11 +30,12 @@ function CocktailList({ cocktails }: { cocktails: Cocktail[] }) {
         {cocktails.map(function(cocktail) {
           return (
               <AccordionItem>
-                <CocktailHeader cocktail={cocktail} />
-                <CocktailBody cocktail={cocktail} />
-                <AccordionPanel pb={4}>
-                 <Button> Buy </Button>
-                </AccordionPanel>
+                  <CocktailDetails cocktail={cocktail}/>
+                {/*<CocktailHeader cocktail={cocktail} />*/}
+                {/*<CocktailBody cocktail={cocktail} />*/}
+                {/*<AccordionPanel pb={4}>*/}
+                {/* <Button> Buy </Button>*/}
+                {/*</AccordionPanel>*/}
               </AccordionItem>
           )
         })}
