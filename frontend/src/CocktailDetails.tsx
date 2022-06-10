@@ -1,7 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Box,
-  chakra,
   Container,
   Stack,
   Text,
@@ -13,14 +12,28 @@ import {
   SimpleGrid,
   StackDivider,
   useColorModeValue,
-  VisuallyHidden,
   List,
-  ListItem,
+  ListItem, Spinner,
 } from '@chakra-ui/react';
 import { MdLocalShipping } from 'react-icons/md';
 import { Cocktail } from './types'
+import axios from "axios";
 
 function CocktailDetails({ cocktail }: { cocktail: Cocktail }) {
+  const [loading, setLoading] = useState<boolean>(false)
+  const [_invoice, setInvoice] = useState<any>()
+
+  function createInvoice() {
+    setLoading(true)
+    axios.get('/btcPay/createInvoice').then(response => {
+      console.log(response)
+      setInvoice(response)
+    }).catch(error => {
+      console.warn(error)
+    }).finally(() =>
+      setLoading(false)
+    )
+  }
   return (
     <Container maxW={'7xl'}>
       <SimpleGrid
@@ -105,12 +118,13 @@ function CocktailDetails({ cocktail }: { cocktail: Cocktail }) {
             py={'7'}
             bg='orange.400'
             color={useColorModeValue('gray.100', 'gray.800')}
-            textTransform={'uppercase'}
+            textTransform='uppercase'
+            disabled={loading} onClick={createInvoice}
             _hover={{
               transform: 'translateY(2px)',
               boxShadow: 'lg',
             }}>
-            Buy
+            {loading ? <Spinner size='sm' /> : 'Buy'}
           </Button>
 
           <Stack direction="row" alignItems="center" justifyContent={'center'}>
