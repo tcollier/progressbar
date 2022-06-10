@@ -15,6 +15,7 @@ class MenuItem:
         item_data = obj.item_data
         self.name = item_data.name
         self.image_ids = item_data.image_ids
+        self.description = item_data.description
 
         variation = item_data.variations[0]
         self.id = obj.id
@@ -29,6 +30,7 @@ class MenuItem:
             "id": self.id,
             "variation_id": self.variation_id,
             "name": self.name,
+            "description": self.description,
             "price": self.price,
             "imageURL": self.imageURL()
         }
