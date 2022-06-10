@@ -9,11 +9,9 @@ import {
 } from '@chakra-ui/react'
 import React from 'react'
 
-function ModalComponent({invoiceUrl} : { invoiceUrl: string}) {
-    const { isOpen, onClose } = useDisclosure()
-    // @ts-ignore
+function ModalComponent({invoiceUrl, clearInvoice} : { invoiceUrl: string, clearInvoice: () => void}) {
     return (
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <Modal isOpen={true} onClose={clearInvoice}>
         <ModalOverlay />
         <ModalContent h='650px' w='1000px'>
           <ModalCloseButton />
@@ -23,6 +21,9 @@ function ModalComponent({invoiceUrl} : { invoiceUrl: string}) {
           >
             <iframe height="500px" width="400px" src={invoiceUrl}></iframe>
           </ModalBody>
+          <ModalFooter>
+            <Button onClick={clearInvoice}>Close</Button>
+          </ModalFooter>
         </ModalContent>
       </Modal>
     )

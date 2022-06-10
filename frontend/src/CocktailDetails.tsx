@@ -18,22 +18,27 @@ import {
 import { MdLocalShipping } from 'react-icons/md';
 import { Cocktail } from './types'
 import axios from "axios";
+import ModalComponent from "./Modal";
 
 function CocktailDetails({ cocktail }: { cocktail: Cocktail }) {
   const [loading, setLoading] = useState<boolean>(false)
-  const [_invoice, setInvoice] = useState<any>()
+  const [_invoice, setInvoice] = useState<string>('')
 
   function createInvoice() {
     setLoading(true)
     axios.get('/btcPay/createInvoice').then(response => {
-      console.log(response)
-      setInvoice(response)
+      setInvoice(response.data)
     }).catch(error => {
       console.warn(error)
     }).finally(() =>
       setLoading(false)
     )
   }
+
+  function clearInvoice() {
+    setInvoice('');
+  }
+
   return (
     <Container maxW={'7xl'}>
       <SimpleGrid
@@ -133,6 +138,7 @@ function CocktailDetails({ cocktail }: { cocktail: Cocktail }) {
           </Stack>
         </Stack>
       </SimpleGrid>
+      { _invoice.length > 0 ? <ModalComponent invoiceUrl={_invoice} clearInvoice={clearInvoice}/> : null }
     </Container>
   );
 }
