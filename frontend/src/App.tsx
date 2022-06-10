@@ -12,6 +12,7 @@ function App() {
           <Spinner />
         </VStack>}
         {cocktails && <CocktailList cocktails={cocktails} />}
+        <ModalComponent openModal={true} invoiceUrl={"https://btcpay0.voltageapp.io/invoice?id=U1Nv2cKAjorF1A6Bn4T9sK"}/>
       </Container>
   );
 }

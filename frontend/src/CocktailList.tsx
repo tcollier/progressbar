@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, Button
+  Accordion, AccordionItem, AccordionButton, AccordionPanel, Box, Button
 } from '@chakra-ui/react'
 import { Cocktail } from './types'
 import CocktailDetails from "./CocktailDetails";

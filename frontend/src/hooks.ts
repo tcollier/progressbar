@@ -21,4 +21,13 @@ function useCocktailMenuFetcher() {
   return { cocktails, loading, error }
 }
 
+// function createInvoice() {
+//   const [invoiceUrl, setInvoiceUrl] = useState<string>()
+//   console.log("Trying to create invoice")
+//   axios.get('/btcPay/createInvoice').then(r => {
+//       setInvoiceUrl(r.data)
+//   })
+//   return { invoiceUrl }
+// }
+
 export { useCocktailMenuFetcher }
