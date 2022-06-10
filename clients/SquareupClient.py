@@ -9,16 +9,17 @@ LOCATION_ID = "LCRMPRZ047M9A"
 CLIENT_ACCESS_TOKEN = "EAAAFFmvScsBx09oQgGC8O7utMsQF1FUvVfLx-RexkCV1wGbJMajAED1oPyJ-Gk2"
 
 class MenuItem:
-    def __init__(self, client, rawObj):
+    def __init__(self, client, obj):
         self.client = client
-        obj = dotsi.Dict(rawObj)
 
         item_data = obj.item_data
         self.name = item_data.name
         self.image_ids = item_data.image_ids
+        self.description = item_data.description
 
         variation = item_data.variations[0]
-        self.id = variation.id
+        self.id = obj.id
+        self.variation_id = variation.id
         self.price = variation.item_variation_data.price_money.amount
 
     def imageURL(self):
@@ -27,7 +28,9 @@ class MenuItem:
     def toJSON(self):
         return {
             "id": self.id,
+            "variation_id": self.variation_id,
             "name": self.name,
+            "description": self.description,
             "price": self.price,
             "imageURL": self.imageURL()
         }
@@ -43,14 +46,21 @@ class SquareupClient:
         result = self.client.catalog.list_catalog()
 
         if result.is_success():
-
-            return [MenuItem(self, rawObj) for rawObj in result.body['objects'] if rawObj['type'] == 'ITEM']
+            return [MenuItem(self, dotsi.Dict(rawObj)) for rawObj in result.body['objects'] if rawObj['type'] == 'ITEM']
 
         elif result.is_error():
             for error in result.errors:
                 print(error['category'])
                 print(error['code'])
                 print(error['detail'])
+
+    def getItem(self, itemId: str) -> MenuItem:
+        result = self.client.catalog.retrieve_catalog_object(object_id = itemId)
+
+        if result.is_success():
+            rawObj = dotsi.Dict(result.body['object'])
+            return MenuItem(self, rawObj)
+            
 
     def getImageURL(self, imageId: str) -> str: 
         result = self.client.catalog.retrieve_catalog_object(object_id=imageId)
@@ -79,7 +89,7 @@ class SquareupClient:
                                     "display_name": "Anon Y. Mouse"
                                 },
                                 "expires_at": tomorrowStr(),
-                                "pickup_at": tomorrowStr(),
+                                "pickup_at": todayStr(),
                                 "is_curbside_pickup": False
                             }
                         }
@@ -121,8 +131,8 @@ class SquareupClient:
             # return the order id
             return dotsi.Dict(result.body).payment.id
 
-    def createOrder(self, itemVariation) -> str:
-        orderId = self._createOrder(itemVariation.id)
-        paymentId = self._createPayment(itemVariation.price, orderId)
+    def createOrder(self, item) -> str:
+        orderId = self._createOrder(item.variation_id)
+        paymentId = self._createPayment(item.price, orderId)
         return paymentId
 

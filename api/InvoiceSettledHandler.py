@@ -1,6 +1,8 @@
 from flask_restful import Api, Resource, reqparse
 from flask import request
 
+from clients.SquareupClient import SquareupClient
+
 class InvoiceSettledHandler(Resource):
     def get(self):
         item_id = request.args.get('itemId')
@@ -10,13 +12,13 @@ class InvoiceSettledHandler(Resource):
         }
 
     def post(self):
-        print(self)
-        parser = reqparse.RequestParser()
-        args = parser.parse_args()
+        itemId = request.json['itemId']
+        sqClient = SquareupClient()
+        receiptId = sqClient.createOrder(sqClient.getItem(itemId))
 
-        print(args)
         return {
             'resultStatus': 'SUCCESS',
-            'message': "Invoice Settled Handler: "
+            'message': "Invoice Settled Handler",
+            'receiptId': receiptId,
         }
 

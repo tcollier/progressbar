@@ -3,6 +3,7 @@ import {
   Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, Button
 } from '@chakra-ui/react'
 import { Cocktail } from './types'
+import CocktailDetails from "./CocktailDetails";
 import { useState } from "react";
 import axios from "axios";
 
@@ -39,17 +40,17 @@ function CocktailList({ cocktails }: { cocktails: Cocktail[] }) {
       setLoading(false)
     })
   }
-
   return (
       <Accordion allowToggle>
         {cocktails.map(function(cocktail) {
           return (
               <AccordionItem>
-                <CocktailHeader cocktail={cocktail} />
-                <CocktailBody cocktail={cocktail} />
-                <AccordionPanel pb={4}>
-                 <Button disabled={loading} onClick={createInvoice}> Buy </Button>
-                </AccordionPanel>
+                  <CocktailDetails cocktail={cocktail}/>
+                  <AccordionPanel pb={4}>
+                    <Button disabled={loading} onClick={createInvoice}> Buy </Button>
+                  </AccordionPanel>
+                {/*<CocktailHeader cocktail={cocktail} />*/}
+                {/*<CocktailBody cocktail={cocktail} />*/}
               </AccordionItem>
           )
         })}

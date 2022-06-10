@@ -6,6 +6,7 @@ class CocktailsMenuHandler(Resource):
         client = SquareupClient()
 
         menuItems = client.getMenu()
+
         return {
             'resultStatus': 'SUCCESS',
             'message': "Fetched the menu",
