@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box,
+  Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box, Button
 } from '@chakra-ui/react'
 import { Cocktail } from './types'
 
@@ -31,6 +31,9 @@ function CocktailList({ cocktails }: { cocktails: Cocktail[] }) {
               <AccordionItem>
                 <CocktailHeader cocktail={cocktail} />
                 <CocktailBody cocktail={cocktail} />
+                <AccordionPanel pb={4}>
+                 <Button> Buy </Button>
+                </AccordionPanel>
               </AccordionItem>
           )
         })}

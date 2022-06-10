@@ -1,8 +1,7 @@
 import React from 'react';
 import CocktailList from './CocktailList'
 import { useCocktailMenuFetcher } from "./hooks";
-import {Button, Spinner, useColorMode} from "@chakra-ui/react";
-import { MoonIcon } from "@chakra-ui/icons";
+import {Spinner, useColorMode} from "@chakra-ui/react";
 
 function App() {
   const { cocktails, loading } = useCocktailMenuFetcher()
@@ -10,11 +9,6 @@ function App() {
 
   return (
       <div className="App">
-        <header>
-          <Button onClick={toggleColorMode}>
-            <MoonIcon />
-          </Button>
-        </header>
         { loading &&  <Spinner /> }
         {cocktails && <CocktailList cocktails={cocktails} />}
       </div>
